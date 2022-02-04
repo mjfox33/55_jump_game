@@ -7,17 +7,18 @@ class Solution:
             return True
         if nums[0] == 0:
             return False
-        
-        for i in range(n-1):
+        if nums[0] == 1 and nums[1] == 0:
+            return False
+
+        max_reach = 0
+        for i in range(n):
             if nums[i] >= n-1-i:
-                if i==0:
-                    return True
-                for j in range(i):
-                    if nums[j] >= i-j:
-                        if j==0:
-                            return True
-                        for k in range(j):
-                            if nums[k] >= j-k:
-                                return True
-        return False
-        
+                return True
+            if nums[i] > 0:
+                max_reach = max(max_reach,i + nums[i])
+            if max_reach <= i:
+                return False
+        return True
+            
+                
+                            
